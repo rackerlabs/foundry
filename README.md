@@ -3,7 +3,7 @@
 ---
 
 ## Intro:
-A small web app that was born out of both, necessity and an out-of-the-box project. The intent is to provide a visual, constrained, scoped guide to learn and use Rackspace Orchestration to deploy infrastructure in a repeatable, deterministic manner with virtually zero setup beyond a web browser and a Rackspace account.
+A small web app that was born out of both, necessity and an "out-of-the-box" project idea. The intent is to provide a visual, constrained, scoped guide to learn and use Rackspace Orchestration to deploy infrastructure in a repeatable, deterministic manner with virtually zero setup beyond a web browser and a Rackspace account.
 
 ## To Use Locally:
 1. Clone this repository
@@ -12,8 +12,8 @@ A small web app that was born out of both, necessity and an out-of-the-box proje
 4. Navigate to `http://localhost:8000`
 5. Profit!
 
-## To Use Over The Web:
-Soon™
+## To Use On The Web:
+The app can be seen and used here [https://heat.foundry.rocks](https://heat.foundry.rocks)
 
 ## To Develop:
 1. Clone this repository
