@@ -21,6 +21,34 @@ describe('TemplateCtrl Unit Test', function() {
     });
   }));
 
+  describe('addServerToTemplate', function () {
+    var template, res;
+    template = {resources: {}, outputs: []};
+    res = {server_name: 'lbname', key_name: 'KEYNAME', image_name: 'Ubuntu', config_drive: true, user_data: 'GDFG%%TYERGGFDGH^%#$TERGSD'};
+    it('should populate template object correctly', function () {
+      scope.addServerToTemplate(template, res);
+      expect(template['resources'][res.server_name]['properties']['key_name']).toEqual(res.key_name);
+      expect(template['resources'][res.server_name]['properties']['image']).toEqual('Ubuntu');
+      expect(template['resources'][res.server_name]['properties']['user_data']).not.toBeNull();
+    });
+  });
+
+  describe('addLBToTemplate', function () {
+    var template, res, r_1, r_2;
+    template = {resources: {}};
+    res = {lb_name: 'lbname', port: '80', algorithm: 'RANDOM', nodes: []};
+    r_1 = {server_name: 'r_1'};
+    r_2 = {server_name: 'r_2'};
+    res.nodes.push(r_1);
+    res.nodes.push(r_2);
+    it('should populate template object correctly', function () {
+      scope.addLBToTemplate(template, res);
+      expect(template['resources'][res.lb_name]['properties']['virtualIps'].length).toEqual(1);
+      expect(template['resources'][res.lb_name]['properties']['nodes'].length).toEqual(2);
+      expect(template['resources'][res.lb_name]['properties']['port']).toEqual('80');
+    });
+  });
+
   describe('getJSON', function () {
     it('produces good JSON', function () {
       var expected = '{\n  "heat_template_version": "2014-10-16",\n  "description": "test descr",\n  "resources": {},\n  "outputs": {}\n}'
