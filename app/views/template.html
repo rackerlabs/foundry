@@ -1,41 +1,23 @@
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title">Stack Description</h3>
+    <h3 class="panel-title">Stack</h3>
   </div>
   <div class="panel-body">
-    <h4 class="pull-left">{{template.description}}</h4>
+    <div class="pull-left text-nowrap">
+      <h4>Description:&nbsp{{template.description}}</h4>
+    </div>
     <div class="button-group pull-right">
-      <button type="button" class="btn btn-danger" ng-click="reset()">Reset</button>
-      <!--button type="button" class="btn btn-success" ng-click="generate()">Get it!</button-->
-    </div>
-  </div>
-</div>
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <h3 class="panel-title">Resources</h3>
-  </div>
-  <div class="panel-body">
-    <div class="button-group pull-left">
       <button type="button" class="btn btn-default" ng-click="back()">Add Resources</button>
-    </div>
-    <div class="pull-right">
-      <ul class="list-group">
-        <li class="list-group-item">Servers: &nbsp;<span class="badge" ng-model="servers.length">{{servers.length}}</span></li>
-        <li class="list-group-item">Load Balancers: &nbsp;<span class="badge" ng-model="lbs.length">{{lbs.length}}</span></li>
-      </ul>
+      <button type="button" class="btn btn-danger" ng-click="reset()">Reset</button>
     </div>
   </div>
 </div>
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Step 3. Get Template</h3>
+    <h3 class="panel-title">Get Template</h3>
   </div>
   <div class="panel-body">
-    <!--div class="button-group pull-left clearfix">
-      <button type="button" ng-class="{'disabled': format == 'YAML'}" class="btn btn-primary" ng-click="getYAML()">YAML</button>
-      <button type="button" ng-class="{'disabled': format == 'JSON'}"class="btn btn-primary" ng-click="getJSON()">JSON</button>
-    </div-->
-    <ul class="nav nav-pills pull-left">
+    <ul class="nav nav-pills pull-left" style="margin-right: 1em;">
       <li role="presentation" ng-class="{'active': format == 'JSON'}">
         <a href="" ng-click="getJSON()">JSON</a>
       </li>
@@ -45,9 +27,9 @@
     </ul>
     <div class="button-group">
       <button type="button" class="btn btn-default" ng-click="saveToFile()">
-        Save As File&nbsp;<span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span></button>
+        Save As File</button>
       <button type="button" id="copy-to-clipboard" class="btn btn-default" clip-click="confirmCopy()" clip-copy="output">
-        Copy to Clipboard&nbsp;<span class="glyphicon glyphicon-file" aria-hidden="true"></span></button>
+        Copy to Clipboard</button>
     </div>
     <div class="input-group" style="margin-top: 1em;">
       <textarea id="output-data" cols="80" rows="25" name="output" ng-model="output">{{output}}</textarea>

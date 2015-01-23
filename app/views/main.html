@@ -1,21 +1,13 @@
-
-<div class="row">
-  <div class="col-xs-6">
-    <h4>Step 1. Enter a short description for your stack:</h4>
-  </div>
-  <div class="col-xs-6">
-    <div class="form-group" ng-class="{'has-error': nameform.stackname.$error.pattern}">
+<div class="container-fluid">
+  <div class="form-group" ng-class="{'has-error': nameform.stackname.$error.pattern}">
       <form name="nameform">
-        <input class="form-control" name="stackname" ng-model="stack_descr" type="text" ng-pattern="/^[\w\s]*$/" placeholder="Super awesome stack description">
+        <div class="input-group input-group-lg">
+          <input class="form-control" name="stackname" ng-model="stack_descr" type="text" ng-pattern="/^[\w\s]*$/" placeholder="Enter Stack Description">
+          <span class="input-group-btn">
+            <button class="btn btn-success" ng-class="{'disabled': !stack_descr}" ng-click="addResources()" role="link">Next</button>
+          </span>
+        </div>
         <span class="help-block h6" ng-class="{'invisible': !nameform.stackname.$error.pattern}">Alphanumeric characters and spaces only.</span>
       </form>
-    </div>
-  </div>
-</div>
-<div class="row clearfix">
-  <div class="col-xs-12">
-    <div class="text-right">
-      <button class="btn btn-success" ng-class="{'disabled': !stack_descr}" ng-click="addResources()" role="link">Next Step</button>
-    </div>
   </div>
 </div>

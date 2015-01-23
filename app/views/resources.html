@@ -6,20 +6,17 @@
     <div class="pull-left"><h4>{{template.description}}</h4></div>
     <div class="button-group pull-right">
       <button type="button" class="btn btn-danger" ng-click="reset()">Reset</button>
-      <button type="button" class="btn btn-success" ng-class="{'disabled': servers.length + lbs.length == 0}" ng-click="createTemplate()">Next Step</button>
+      <button type="button" class="btn btn-success" ng-class="{'disabled': servers.length + lbs.length == 0}" ng-click="createTemplate()">Next</button>
     </div>
   </div>
 </div>
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Step 2. Add Resources</h3>
+    <h3 class="panel-title">Add Resources</h3>
   </div>
   <div class="panel-body">
     <div class="button-group">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Server</button>
-      <!--button type="button" class="btn btn-primary" data-toggle="modal" 
-      data-target="#lbModal" data-toggle="tooltip" data-placement="bottom"
-      title="Can only add LB when there are 2 or more servers">Add Load Balancer</button-->
       <button type="button" class="btn btn-primary" data-toggle="modal" 
       ng-class="{'disabled': servers.length < 2}" data-target="#lbModal">Add Load Balancer</button>
       <div class="pull-right">
@@ -30,8 +27,9 @@
       </div>
     </div>
     <!-- Modals Markup -->
-    <ng-include src="'app/views/servermodal.html'"></ng-include>
-    <ng-include src="'app/views/lbmodal.html'"></ng-include>
-    <!-- end Modal -->
+    <ng-include src="'app/views/includes/servermodal.html'"></ng-include>
+    <ng-include src="'app/views/includes/lbmodal.html'"></ng-include>
+    <ng-include src="'app/views/includes/swiftmodal.html'"></ng-include>
+    <!-- end Modals -->
   </div>
 </div>
