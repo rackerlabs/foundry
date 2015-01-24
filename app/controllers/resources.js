@@ -34,16 +34,22 @@ angular.module('foundryApp')
         'DISABLED'
     ];
     /* end dropdown data */
+    
+    /* "global" types */
+    $rootScope.resourceTypes = {
+        nova:   'OS::Nova::Server',
+        lb:     'Rackspace::Cloud::LoadBalancer',
+        swift:  'OS::Swift::Container' 
+    };
 
-    $scope.server   = {};
-    $scope.lb       = {};
-    $scope.lb.nodes = [];
-    $scope.serverType = 'OS::Nova::Server';
-    $scope.lbType = 'Rackspace::Cloud::LoadBalancer';
+    $scope.server       = {};
+    $scope.lb           = {};
+    $scope.lb.nodes     = [];
+    $scope.container    = {};
 
     $scope.addServer = function () {
         var srvrObj = {};
-        srvrObj['resType']      = $scope.serverType;
+        srvrObj['resType']      = $rootScope.resourceTypes.nova;
         srvrObj['server_name']  = $scope.server.server_name;
         srvrObj['key_name']     = $scope.server.key_name;
         srvrObj['image_name']   = $scope.server.image_name;
@@ -63,7 +69,7 @@ angular.module('foundryApp')
     $scope.addLB = function () {
         //console.dir($scope.lb);
         var lbObj           = {};
-        lbObj['resType']    = $scope.lbType;
+        lbObj['resType']    = $rootScope.resourceTypes.lb;
         lbObj['lb_name']    = $scope.lb.lbname;
         lbObj['port']       = $scope.lb.port;
         lbObj['protocol']   = $scope.lb.protocol;
@@ -72,6 +78,18 @@ angular.module('foundryApp')
         $rootScope.lbs.push(lbObj);   
         $rootScope.resources.push(lbObj);
         $scope.resetModel('lb');
+    };
+
+    $scope.addContainer = function () {
+        var cntObj                  = {};
+        cntObj['resType']           = $rootScope.resourceTypes.swift;
+        cntObj['container_name']    = $scope.container.container_name;
+        //cntObj['CDN']               = $scope.container.CDN; // not currently possible via Orchestration
+        cntObj['aclRead']           = $scope.container.aclRead;
+        cntObj['aclWrite']          = $scope.container.aclWrite;
+        $rootScope.containers.push(cntObj);
+        $rootScope.resources.push(cntObj);
+        $scope.resetModel('swift');
     };
 
     $scope.createTemplate = function () {
@@ -87,6 +105,10 @@ angular.module('foundryApp')
             case 'lb':
                 $scope.lb = {};
                 $scope.lbform = null;
+                break;
+            case 'swift':
+                $scope.container = {};
+                $scope.swiftform = null;
                 break;
             default:
                 break; 

@@ -6,7 +6,7 @@
     <div class="pull-left"><h4>{{template.description}}</h4></div>
     <div class="button-group pull-right">
       <button type="button" class="btn btn-danger" ng-click="reset()">Reset</button>
-      <button type="button" class="btn btn-success" ng-class="{'disabled': servers.length + lbs.length == 0}" ng-click="createTemplate()">Next</button>
+      <button type="button" class="btn btn-success" ng-class="{'disabled': servers.length + lbs.length + containers.length == 0}" ng-click="createTemplate()">Next</button>
     </div>
   </div>
 </div>
@@ -19,10 +19,12 @@
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Server</button>
       <button type="button" class="btn btn-primary" data-toggle="modal" 
       ng-class="{'disabled': servers.length < 2}" data-target="#lbModal">Add Load Balancer</button>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#swiftModal">Add Files Container</button>
       <div class="pull-right">
         <ul class="list-group">
           <li class="list-group-item">Servers: &nbsp;<span class="badge" ng-model="servers.length">{{servers.length}}</span></li>
           <li class="list-group-item">Load Balancers: &nbsp;<span class="badge" ng-model="lbs.length">{{lbs.length}}</span></li>
+          <li class="list-group-item">Containers: &nbsp;<span class="badge" ng-model="containers.length">{{containers.length}}</span></li>
         </ul>
       </div>
     </div>

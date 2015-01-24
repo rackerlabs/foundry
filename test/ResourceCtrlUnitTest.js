@@ -8,10 +8,11 @@ describe('ResourcesCtrl Unit Test', function() {
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller) {
     scope = {};
-    rootScope = {};
-    rootScope.lbs = [];
-    rootScope.resources = [];
-    rootScope.servers = [];
+    rootScope             = {};
+    rootScope.lbs         = [];
+    rootScope.resources   = [];
+    rootScope.containers  = [];
+    rootScope.servers     = [];
     ResourcesCtrl = $controller('ResourcesCtrl', {
       $scope: scope,
       $rootScope : rootScope
@@ -87,6 +88,28 @@ describe('ResourcesCtrl Unit Test', function() {
       //check model was reset
       expect(scope.lb).toEqual({});
       expect(scope.lbform).toBeNull();
+    });
+
+    it('should reset swift model correctly', function () {
+      //set some data
+      scope.container.container_name = 'name';
+      scope.container.CDN = true;
+      scope.container.aclRead = 'user1';
+      //add to scope
+      scope.addContainer();
+      //check model was reset
+      expect(scope.container).toEqual({});
+      expect(scope.swiftform).toBeNull();
+    });
+
+    it('should reset nothing is case not known', function () {
+      scope.server = {such: 'wow', very: 'many'};
+      scope.lb = {money: 'for nothing'};
+      scope.container = {elephant: 'pachyderm'};
+      scope.resetModel('thisthat');
+      expect(scope.server.such).toEqual('wow');
+      expect(scope.lb.money).not.toBeNull();
+      expect(scope.container.elephant).toBeDefined();
     });
   });
 });

@@ -49,6 +49,18 @@ describe('TemplateCtrl Unit Test', function() {
     });
   });
 
+  describe('addContainerToTemplate', function () {
+    var template, res;
+    template = {resources: {}};
+    res = {container_name: 'cname', aclRead: 'uno, dos, tres'};
+    it('should populate template object correctly', function () {
+      scope.addContainerToTemplate(template, res);
+      expect(template['resources'][res.container_name]['properties']['name']).toEqual('cname');
+      expect(template['resources'][res.container_name]['properties']['X-Container-Write']).toEqual('');
+      expect(template['resources'][res.container_name]['properties']['X-Container-Read']).toMatch(/uno/);
+    });
+  });
+
   describe('getJSON', function () {
     it('produces good JSON', function () {
       var expected = '{\n  "heat_template_version": "2014-10-16",\n  "description": "test descr",\n  "resources": {},\n  "outputs": {}\n}'
