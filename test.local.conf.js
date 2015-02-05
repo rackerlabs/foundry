@@ -16,6 +16,8 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'test/libs/angular.min.js',
+      'test/libs/angular-resource.min.js',
+      'test/libs/angular-route.min.js',
       'test/libs/angular-mocks.js',
       'test/libs/ZeroClipboard.min.js',
       'test/libs/ngClip.js',

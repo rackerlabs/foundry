@@ -3,8 +3,8 @@
 'use strict';
 
 angular.module('foundryApp')
-  .controller('TemplateCtrl', function($scope, $rootScope, $location) {
-    
+  .controller('TemplateCtrl', ['$scope', '$rootScope', '$location', function($scope, $rootScope, $location) {
+
     $rootScope.output = '';
     $scope.format = 'JSON';
 
@@ -112,4 +112,4 @@ angular.module('foundryApp')
 
     //init and display
     $scope.generate();
-});
+}]);

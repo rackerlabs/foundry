@@ -13,6 +13,13 @@ describe('ResourcesCtrl Unit Test', function() {
     rootScope.resources   = [];
     rootScope.containers  = [];
     rootScope.servers     = [];
+    rootScope.resourceTypes = {
+        nova:   'OS::Nova::Server',
+        lb:     'Rackspace::Cloud::LoadBalancer',
+        swift:  'OS::Swift::Container',
+        trove:  'OS::Trove::Instance' 
+    };
+
     ResourcesCtrl = $controller('ResourcesCtrl', {
       $scope: scope,
       $rootScope : rootScope
@@ -63,6 +70,10 @@ describe('ResourcesCtrl Unit Test', function() {
     });
   });
 
+  describe('addContainer', function () {
+
+  });
+  
   describe('resetModel', function () {
     it('should reset server model', function () {
       //set some data
@@ -100,6 +111,16 @@ describe('ResourcesCtrl Unit Test', function() {
       //check model was reset
       expect(scope.container).toEqual({});
       expect(scope.swiftform).toBeNull();
+    });
+
+    it('should reset dbaas model correctly', function () {
+      scope.db.type = 'mysql';
+      scope.db.flavor = '1 Gb';
+      //add to scope
+      scope.addDBaaS();
+      //check stuff was reset
+      expect(scope.db).toEqual({});
+      expect(scope.dbaasform).toBeNull();
     });
 
     it('should reset nothing is case not known', function () {

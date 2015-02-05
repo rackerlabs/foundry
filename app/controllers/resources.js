@@ -4,7 +4,8 @@
 'use strict';
 
 angular.module('foundryApp')
-  .controller('ResourcesCtrl', function($scope, $rootScope, $location) {
+  .controller('ResourcesCtrl', ['$scope', '$rootScope', '$location', function($scope, $rootScope, $location) {
+
     /* data to populate dropdowns */
     $scope.images   =   
         {
@@ -34,17 +35,12 @@ angular.module('foundryApp')
         'DISABLED'
     ];
     /* end dropdown data */
-    
-    /* "global" types */
-    $rootScope.resourceTypes = {
-        nova:   'OS::Nova::Server',
-        lb:     'Rackspace::Cloud::LoadBalancer',
-        swift:  'OS::Swift::Container' 
-    };
+
 
     $scope.server       = {};
     $scope.lb           = {};
     $scope.lb.nodes     = [];
+    $scope.db           = {};
     $scope.container    = {};
 
     $scope.addServer = function () {
@@ -92,6 +88,10 @@ angular.module('foundryApp')
         $scope.resetModel('swift');
     };
 
+    $scope.addDBaaS = function () {
+        $scope.resetModel('dbaas');
+    };
+
     $scope.createTemplate = function () {
         $location.path('/template');
     };
@@ -110,9 +110,12 @@ angular.module('foundryApp')
                 $scope.container = {};
                 $scope.swiftform = null;
                 break;
+            case 'dbaas':
+                $scope.db = {};
+                $scope.dbaasform = null;
             default:
                 break; 
         };
     };
     
-});
+}]);
